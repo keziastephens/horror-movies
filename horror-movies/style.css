@@ -4,3 +4,32 @@
     box-sizing: border-box;
     text-decoration: none;
 }
+
+.cardContent{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card{
+    display: flex;
+    width: 20vw;
+}
+
+.card-img-top{
+    height: 50vh;
+}
+
+.card-title{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.card-text{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
+
+.btn{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}

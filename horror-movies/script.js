@@ -29,7 +29,7 @@ let objectArray = [
         id: 4,
         photo: 'the-eye.jpg',
         title: 'The Eye',
-        director: 'Oxide Pang Chun, Danny Pang Phat',
+        director: 'Oxide Pang Chun',
         date: '2002',
         info: 'After 18 years of blindness, 20-year-old violinist Wong regains her vision when she undergoes a corneal transplant. Shes overjoyed with the procedure, but her elation dissipates when she begins experiencing ghostly encounters. When she travels to her cornea donors hometown to investigate, her symptoms worsen.'
     },
@@ -73,18 +73,89 @@ function objectArrayCardInfo(){
     for(let i = 0; i < objectArray.length; i++){
         $('#cardContent').append(
             `
-            <div class="card">
-                <img class="card-img-top" src="${objectArray[i].photo}" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">${objectArray[i].title}</h5>
-                    <p class="card-text">${objectArray[i].director}</p>
-                    <p class="card-text">${objectArray[i].date}</p>
-                    <button id="${objectArray[i].id}" type="button" class="btn btn-primary moreInformation" data-toggle="modal" data-target="#exampleModalCenter">
-                        Buy Now
-                    </button>
-                </div>
-            </div> 
+            <div class="card" style="width: 18rem;">
+            <img src="${objectArray[i].photo}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">${objectArray[i].title}</h5>
+              <p class="card-text">${objectArray[i].date}</p>
+              <p class="card-text">${objectArray[i].director}</p>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+              Tell Me More
+            </button>
+            </div>
+          </div>
             `
         )
     }
 }
+
+
+
+
+function objectsLoop(){
+    objectArrayCardInfo();
+
+    $(".watchNow").click(function(){
+        let i = 0;
+        for(i = 0; i<objectArray.length; i++){
+            if(parseInt(this.id) === objectArray[i].id){
+                // console.log("clicked");
+                // console.log(objectArray[i].artist);
+                // one way to clear data is by using the jquery function
+                // empty() - it removes all child nodes from the selected element
+                $("#exampleModalLongTitle").empty().append(
+                    `
+                    <h3>${objectArray[i].artist}</h3>
+                    `
+                );
+                $("#objectArrayModalInfo").empty().append(
+                    `
+                    
+                    <img class = "objectArrayModalImage" src="${objectArray[i].photo}" alt="">
+    
+                    <h3 class="albumInfoModal">${objectArray[i].title}</h3>
+
+                    <p class="modalTextInfo">${objectArray[i].info}</p>
+                    `
+                );
+            }
+        }
+        // let i = 0; 
+        // for(i = 0; i < objectArray.length; i++){
+        //     if(parseInt(this.id) === objectArray[i].id){
+        //         console.log(objectArray[i].name);
+        //     };
+        // };
+    });
+
+
+}
+objectsLoop();
+
+
+
+
+
+
+
+function filmYear(event){
+    event.preventDefault();
+    let yearFilter = [];
+
+    $('input[name="year"]:checked').each(function(){
+        yearFilter.push(this.value);
+    });
+
+    console.log(yearFilter);
+    displayYear(yearFilter);
+
+};
+
+function displayYear(selectedYear){
+    let i = 0;
+    for(i = 0; i < selectedYear.length; i++){
+        console.log(selectedYear[i]);
+    }
+}
+
+submitBtn.addEventListener("click", filmYear);
